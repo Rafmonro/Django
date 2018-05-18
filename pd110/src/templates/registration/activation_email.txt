@@ -2,7 +2,10 @@
 
 {% trans "Activa tu cuenta en" %} {{ site.name }}:
 
+Hola,
+haz click en el enlace para activar tu cuenta.
 http://{{ site.domain }}{% url 'registration_activate' activation_key %}
+http://example.com/accounts/activate/eb83a915200765ed87b9d40af7f3fabafa7a4f36
 
 {% blocktrans %}Enlace válido durante {{ expiration_days }} días.{% endblocktrans %}
 
