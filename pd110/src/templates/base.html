@@ -11,6 +11,12 @@
 
     <title>{% block head_tittle %}PD110{% endblock %}</title>
 
+    <style>
+      
+      {% block style %}{% endblock %}
+
+    </style>
+
 {% include "head_css.html" %}   
 
   </head>
@@ -21,7 +27,7 @@
 {% include "navbar.html" %}
 
 
-    <main role="main" class="container">
+    <div class="container">
 {% block jumbotron %}
 
 {% endblock %}
@@ -29,7 +35,7 @@
 {% block content %}
 {% endblock %}
 
-    </main>
+    </div>
 
      <!-- Bootstrap core JavaScript
     ================================================== -->
