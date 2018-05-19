@@ -19,7 +19,7 @@
           {% if request.user.is_authenticated %}
           <li><a href="{% url 'auth_logout' %}">Salir</a></li>
           {% else %}
-          <li><a href="{% url 'registration_register' %}">Registrarte</a></li>
+          <li style=" width: 200px; height: 24px; "><a href="{% url 'registration_register' %}">Registrarte</a></li>
          <!-- <li><a href="{% url 'auth_login' %}">Entrar</a></li>-->
           {% endif %}
         </ul>
