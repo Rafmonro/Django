@@ -1,8 +1,6 @@
 {% extends "base.html" %} 
 {% load crispy_forms_tags %}
 {% load static %}
-
-
 {% block head_tittle %}Bienvenidos | {{ block.super }}{% endblock %}
 
 <style>
@@ -20,6 +18,12 @@
 </style>
 
 {% block jumbotron %}
+
+
+{% if request.user.is_staff %}
+{{ queryset }}
+{% else %}
+
         <div class="jumbotron">
    <div class="container">
 
@@ -35,6 +39,7 @@
 </div>
 </div>
 </div>
+{% endif %}
 {% endblock %}
 
 
@@ -47,16 +52,25 @@
 <br/>
 
 {% block content %}
+{% if not request.user.is_staff %}
 <div class='row'>
 	<div class='col-sm-3 col-xs-12 pull-right'> 
-		<p class='lead text-align-center'>{{ titulo }}</p>
+		{% if not user.is_authenticated %}
+		<p class='lead text-align-center'>Suscribirse</p>
+		
 		<form method="POST" action="">{% csrf_token %}
 		{{ el_form|crispy }}
-		<input class="btn btn-primary" type="submit" value="Recibir" />
+		<input class="btn btn-primary" type="submit" value="Enviar" />
 		</form>
+		{% else %}
+		<p class='lead text-align-center'>{{ titulo }}<br/><br/><br/></p>
+		<i class="fas fa-gamepad fa-5x"></i>
+
+
+		{% endif %}
 	</div>
 	<div class='col-sm-3'>
-		<p class='lead text-align-center'>Si estás leyendo esto es que estás copiando<br/><i class="far fa-arrow-alt-circle-up fa-5x"></i></p>
+		<p class='lead text-align-center'>Si estás leyendo esto es que estás copiando<br/><i class="far fa-arrow-alt-circle-up fa-5x" style="color: #3380FF;"></i></p>
 	</div>
 	<div class='col-sm-3'>
 		<p class='lead text-align-center'>De verdad, no copies</p><img src='{% static "img/vault_strong.png" %}'/>
@@ -64,7 +78,7 @@
 	<div class='col-sm-3 '>
 		<p class='lead text-align-center'>Mala persona :(<br/><br/><span class="fa-stack fa-5x">
 
-				<i class="fa fa-spinner fa-spin fa-stack-2x"></i>
+				<i class="fa fa-spinner fa-spin fa-stack-2x"style="color: #3380FF;"></i>
 				
 
 
@@ -72,4 +86,5 @@
 	</div>
 </div>
 <hr/>
+{% endif %}
 {% endblock %}
